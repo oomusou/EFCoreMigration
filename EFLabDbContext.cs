@@ -11,5 +11,22 @@ namespace EFCoreMigration
         {
             optionsBuilder.UseNpgsql(DbConnectionString);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var customerID = 1;
+            
+            modelBuilder.Entity<Customer>().HasData(new Customer {
+                CustomerID = customerID++,
+                Name = "Sam",
+                Age = 18,
+            });
+            
+            modelBuilder.Entity<Customer>().HasData(new Customer {
+                CustomerID = customerID++,
+                Name = "Kevin",
+                Age = 19,
+            });
+        }
     }
 }
